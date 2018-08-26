@@ -65,14 +65,14 @@ An Amazon-like storefront using MySQL that will take in orders from customers an
 
 ## Technologies used
 - Node.js
-- Inquire NPM Package (https://www.npmjs.com/package/inquirer)
-- MYSQL NPM Package (https://www.npmjs.com/package/mysql)
-- Console.table NPM Package (https://www.npmjs.com/package/console.table)
+- [Inquire NPM Package](https://www.npmjs.com/package/inquirer)
+- [MYSQL NPM Package](https://www.npmjs.com/package/mysql)
+- [Console.table NPM Package](https://www.npmjs.com/package/console.table)
 
 ### Prerequisites
 
 ```
-- Node.js - Download the latest version of Node https://nodejs.org/en/
+- Node.js - [Download the latest version of Node](https://nodejs.org/en/)
 - Create a MYSQL database called 'bamazon', reference bamazon.sql
 ```
 
