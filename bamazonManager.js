@@ -15,7 +15,7 @@ connection.connect(function (err) {
     userPrompt();
 });
 
-// menu of choices for user
+// Menu of choices for the manager.
 function userPrompt() {
     inquirer.prompt([
         {
@@ -37,16 +37,16 @@ function userPrompt() {
     });
 }
 
-// quit message. if user chooses "n", it will end the sql connection and exit the code.
+// Quit message. If user chooses "n", it will end the sql connection and exit the code.
 function quit() {
     inquirer.prompt([
         {
             type: "confirm",
-            name: "goback",
+            name: "menu",
             message: "Would you like to go back to the main menu?"
         }
     ]).then(function (arg) {
-        if (arg.choice === "n") {
+        if (arg.menu === false) {
             connection.end();
             process.exit();
         } else {
@@ -55,7 +55,7 @@ function quit() {
     });
 }
 
-// list every available item: the item IDs, names, prices, and quantities
+// Lists every available item: the item IDs, names, prices, and quantities.
 function viewProducts() {
     connection.query("select * from products", function (err, res) {
         if (err) throw err;
@@ -65,7 +65,7 @@ function viewProducts() {
     });
 }
 
-// list all items with an inventory count lower than five
+// Lists all items with an inventory count lower than five.
 function lowInventory() {
     connection.query("select * from products where stock_quantity < 5", function (err, res) {
         if (err) throw err;
@@ -75,14 +75,14 @@ function lowInventory() {
     });
 }
 
-// let the manager "add more" of any item currently in the store
+// Lets the manager "add more" of any item currently in the store.
 function addInventory() {
     connection.query("select * from products", function (err, res) {
         if (err) throw err;
         console.log("\n");
         console.table(res);
 
-        // empty array to push all products available in the database to display as "1: PRODUCT NAME" in the terminal
+        // Empty array to push all products available in the database to display as "1: PRODUCT NAME" in the terminal.
         var productArr = [];
 
         for (var i = 0; i < res.length; i++) {
@@ -105,11 +105,11 @@ function addInventory() {
             var add;
             var arr = arg.product.split(":");
 
-            // for loop to match the selected item id to the item id in the database table
+            // For loop to match the selected item ID to the item ID in the database table.
             for (var i = 0; i < res.length; i++) {
 
                 if (parseInt(arr[0]) == parseInt(res[i].item_id)) {
-                    // adding the user input units and current stock quantity
+                    // Adding the user input units and current stock quantity.
                     add = parseInt(res[i].stock_quantity) + parseInt(arg.units);
 
                     var sql = "UPDATE products SET ? WHERE ?";
@@ -129,7 +129,7 @@ function addInventory() {
     });
 }
 
-// allow the manager to add a completely new product to the store
+// Allow the manager to add a completely new product to the store.
 function addProduct() {
     inquirer.prompt([
         {
