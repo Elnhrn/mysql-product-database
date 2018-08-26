@@ -63,7 +63,7 @@ An Amazon-like storefront using MySQL that will take in orders from customers an
 ### Prerequisites
 
 ```
-- Node.js - [Download the latest version of Node](https://nodejs.org/en/)
+- Node.js - Download the latest version of Node: https://nodejs.org/en/
 - Create a MYSQL database called 'bamazon', reference bamazon.sql
 ```
 
